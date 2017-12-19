@@ -1,8 +1,8 @@
 import React from 'react'
-import {Image, StyleSheet} from 'react-native'
-import JenosizeButton from './common/JenosizeButton'
-import {Button, Container, Content, Header} from "native-base";
-import {NavigationActions} from 'react-navigation'
+import {FlatList, Image, StyleSheet, TouchableOpacity, View} from 'react-native'
+import {Button, Container, Content, Header, ListItem, Text} from "native-base";
+import jsonData from '../assets/example'
+import {NavigationActions} from "react-navigation";
 
 export default class HomeScreen extends React.Component {
 
@@ -17,27 +17,44 @@ export default class HomeScreen extends React.Component {
         ),
     };
 
-    onButtonClicked = () => {
+    onItemClicked(item) {
         const navigateAction = NavigationActions.navigate({
             routeName: 'DetailStack',
-            params: { isBack: true },
+            params: {
+                isBack: true,
+                item
+            }
         });
 
         this.props.navigation.dispatch(navigateAction)
     };
 
+    renderItem({item}) {
+        return (
+            <ListItem onPress={this.onItemClicked.bind(this, item)}>
+                <Text>{item.name}</Text>
+            </ListItem>
+        )
+    };
+
     render() {
         return (
-            <Container>
-                <Content>
-                    <JenosizeButton onPress={this.onButtonClicked} title={'Primary'}/>
-                </Content>
-            </Container>
+            <View style={styles.container}>
+                <FlatList
+                    data={jsonData.data}
+                    keyExtractor={(item, index) => item.id}
+                    renderItem={this.renderItem.bind(this)}
+                />
+            </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#ffffff'
+    },
     icon: {
         width: 26,
         height: 26

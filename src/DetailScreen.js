@@ -36,14 +36,22 @@ export default class DetailScreen extends React.Component {
         }
     }
 
+    renderDataItem() {
+        const { item } = this.props.navigation.state.params
+
+        return (
+            <Button block>
+                <Text>{item.name}</Text>
+            </Button>
+        )
+    }
+
     render() {
         return (
             <Container>
                 <Content>
                     {this.renderBackButton()}
-                    <Button block>
-                        <Text>Primary</Text>
-                    </Button>
+                    {this.renderDataItem()}
                 </Content>
             </Container>
         )
