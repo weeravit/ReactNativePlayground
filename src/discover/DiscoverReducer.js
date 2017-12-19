@@ -1,16 +1,22 @@
 const INITIAL_STATE = {
+    isLoading: false,
     data: []
 };
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case 'DISCOVER_LOAD_DATA':
+        case 'DISCOVER_LOADING':
             return {
                 ...state,
-                data: action.payload
+                isLoading: true
+            };
+        case 'DISCOVER_LOADED':
+            return {
+                ...state,
+                data: action.payload,
+                isLoading: false
             };
         default:
-            console.log(`DiscoverScreen: ${action.type}`)
             return state;
     }
 };

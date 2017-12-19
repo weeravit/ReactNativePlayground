@@ -10,7 +10,6 @@ export default (state = INITIAL_STATE, action) => {
                 data: action.payload
             };
         default:
-            console.log(`HomeScreen: ${action.type}`)
             return state;
     }
 };
