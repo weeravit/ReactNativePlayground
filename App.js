@@ -5,16 +5,13 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet} from 'react-native';
+import {
+    Platform,
+    StyleSheet,
+    Text as RNText
+} from 'react-native';
 
 import {Button, Container, Content, Header, Text} from 'native-base';
-
-const instructions = Platform.select({
-    ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-    android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
 export default class App extends Component<{}> {
     render() {
@@ -23,7 +20,7 @@ export default class App extends Component<{}> {
                 <Header/>
                 <Content>
                     <Button rounded>
-                        <Text>Click Me! </Text>
+                        <Text style={styles.textStyles}>Click Me!</Text>
                     </Button>
                 </Content>
             </Container>
@@ -31,21 +28,18 @@ export default class App extends Component<{}> {
     }
 }
 
+const platformColor = Platform.select({
+    ios: {
+        color: '#fffd1a'
+    },
+    android: {
+        color: '#ff00ff'
+    }
+})
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
+    textStyles: {
+        // color: Platform.OS === 'ios' ? '#fffd1a' : '#ff00ff'
+        ...platformColor
+    }
 });
