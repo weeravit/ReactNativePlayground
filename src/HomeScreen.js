@@ -1,5 +1,5 @@
 import React from 'react'
-import {FlatList, Image, StyleSheet, TouchableOpacity, View} from 'react-native'
+import {Dimensions, FlatList, Image, StyleSheet, View} from 'react-native'
 import {Button, Container, Content, Header, ListItem, Text} from "native-base";
 import jsonData from '../assets/example'
 import {NavigationActions} from "react-navigation";
@@ -31,7 +31,8 @@ export default class HomeScreen extends React.Component {
 
     renderItem({item}) {
         return (
-            <ListItem onPress={this.onItemClicked.bind(this, item)}>
+            <ListItem
+                onPress={this.onItemClicked.bind(this, item)}>
                 <Text>{item.name}</Text>
             </ListItem>
         )
@@ -50,10 +51,24 @@ export default class HomeScreen extends React.Component {
     }
 }
 
+const {width, height} = Dimensions.get('window')
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#ffffff'
+    },
+    gridItemStyles: {
+        margin: 8,
+        height: 100,
+        width: width * 0.45,
+        backgroundColor: '#ffca2f',
+        flex: 1,
+        justifyContent: 'flex-end'
+    },
+    textStyles: {
+        marginBottom: '20%',
+        textAlign: 'center'
     },
     icon: {
         width: 26,

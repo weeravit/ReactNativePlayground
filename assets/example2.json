@@ -1,0 +1,95 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "type": "topten",
+      "data": [
+        {
+          "id": 1,
+          "name": "topten1"
+        },
+        {
+          "id": 2,
+          "name": "topten2"
+        },
+        {
+          "id": 3,
+          "name": "topten3"
+        },
+        {
+          "id": 4,
+          "name": "topten4"
+        },
+        {
+          "id": 5,
+          "name": "topten5"
+        },
+        {
+          "id": 6,
+          "name": "topten6"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "best-seller",
+      "data": [
+        {
+          "id": 1,
+          "name": "Best Seller1"
+        },
+        {
+          "id": 2,
+          "name": "Best Seller2"
+        },
+        {
+          "id": 3,
+          "name": "Best Seller3"
+        },
+        {
+          "id": 4,
+          "name": "Best Seller4"
+        },
+        {
+          "id": 5,
+          "name": "Best Seller5"
+        },
+        {
+          "id": 6,
+          "name": "Best Seller6"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "recommend",
+      "data": [
+        {
+          "id": 1,
+          "name": "recommend1"
+        },
+        {
+          "id": 2,
+          "name": "recommend2"
+        },
+        {
+          "id": 3,
+          "name": "recommend3"
+        },
+        {
+          "id": 4,
+          "name": "recommend4"
+        },
+        {
+          "id": 5,
+          "name": "recommend5"
+        },
+        {
+          "id": 6,
+          "name": "recommend6"
+        }
+      ]
+    }
+  ]
+}
