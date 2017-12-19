@@ -1,55 +1,58 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React from 'react';
+import {StackNavigator, TabBarBottom, TabNavigator} from 'react-navigation'
+import HomeScreen from './src/HomeScreen'
+import DetailScreen from './src/DetailScreen'
+import DiscoverScreen from './src/DiscoverScreen'
+import ProfileScreen from './src/ProfileScreen'
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, View} from 'react-native';
-
-import {Button, Container, Content, Header, Text} from 'native-base';
-
-export default class App extends Component<{}> {
-    render() {
-        return (
-            <View style={styles.containerStyles}>
-                <View style={styles.contentStyles}>
-                    <View style={styles.itemStyles}/>
-
-                    <Button rounded style={styles.buttonStyles}>
-                        <Text style={styles.textStyles}>Click Me!</Text>
-                    </Button>
-                </View>
-
-                <View style={styles.bottomBarStyles}/>
-            </View>
-        );
+const TabStack = TabNavigator({
+    HomeStack: {
+        screen: StackNavigator({
+            HomeScreen: {
+                screen: HomeScreen
+            }
+        })
+    },
+    DiscoverStack: {
+        screen: StackNavigator({
+            DiscoverScreen: {
+                screen: DiscoverScreen
+            },
+            DetailDiscoverScreen: {
+                screen: DetailScreen
+            }
+        }, {
+            header: null
+        })
+    },
+    ProfileStack: {
+        screen: StackNavigator({
+            ProfileScreen: {
+                screen: ProfileScreen
+            }
+        })
     }
-}
-
-const styles = StyleSheet.create({
-    containerStyles: {
-        flex: 1
-    },
-    buttonStyles: {
-        alignSelf: 'center'
-    },
-    itemStyles: {
-        width: 50,
-        height: 50,
-        backgroundColor: '#ff0e16'
-    },
-    textStyles: {
-        color: Platform.OS === 'ios' ? '#fffd1a' : '#ff00ff'
-    },
-    contentStyles: {
-        flex: 0.9,
-        backgroundColor: '#ff00ff',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    bottomBarStyles: {
-        flex: 0.1,
-        backgroundColor: '#0f0fff'
+}, {
+    tabBarComponent: TabBarBottom,
+    tabBarPosition: 'bottom',
+    tabBarOptions: {
+        activeTintColor: '#e91e63'
     }
 });
+
+const MainStackNavigator = StackNavigator({
+    TabStack: {
+        screen: TabStack
+    },
+    DetailStack: {
+        screen: StackNavigator({
+            DetailScreen: {
+                screen: DetailScreen
+            }
+        })
+    }
+}, {
+    headerMode: 'none'
+});
+
+export default MainStackNavigator;
