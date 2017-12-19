@@ -3,10 +3,8 @@ import axios from 'axios'
 
 export const loadData = () => {
     return (dispatch) => {
-        axios.get('http://www.json-generator.com/api/json/get/cfzqJjYmCq?indent=2')
+        axios.get('https://raw.githubusercontent.com/weeravit/ReactNativePlayground/master/assets/example.json')
             .then((response) => {
-                console.log(response);
-                
                 dispatch({
                     type: 'DISCOVER_LOADED',
                     payload: response.data.data
