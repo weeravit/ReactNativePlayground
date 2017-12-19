@@ -1,21 +1,27 @@
 import React from 'react'
-import {Dimensions, FlatList, Image, StyleSheet, View} from 'react-native'
+import {FlatList, Image, StyleSheet, TouchableOpacity, View, Dimensions} from 'react-native'
 import {Button, Container, Content, Header, ListItem, Text} from "native-base";
-import jsonData from '../assets/example'
 import {NavigationActions} from "react-navigation";
+import {connect} from "react-redux";
+import * as actions from './DiscoverAction'
+import {bindActionCreators} from "redux";
 
-export default class HomeScreen extends React.Component {
+class DiscoverScreen extends React.Component {
 
     static navigationOptions = {
-        title: 'Home',
-        tabBarLabel: 'Home',
+        title: 'Discover',
+        tabBarLabel: 'Discover',
         tabBarIcon: ({tintColor}) => (
             <Image
-                source={require('../assets/user.png')}
+                source={require('../../assets/user.png')}
                 style={[styles.icon, {tintColor: tintColor}]}
             />
         ),
     };
+
+    componentDidMount() {
+        this.props.actions.loadData();
+    }
 
     onItemClicked(item) {
         const navigateAction = NavigationActions.navigate({
@@ -31,18 +37,22 @@ export default class HomeScreen extends React.Component {
 
     renderItem({item}) {
         return (
-            <ListItem
+            <TouchableOpacity
+                style={styles.gridItemStyles}
                 onPress={this.onItemClicked.bind(this, item)}>
-                <Text>{item.name}</Text>
-            </ListItem>
+                <Text style={styles.textStyles}>{item.name}</Text>
+            </TouchableOpacity>
         )
     };
 
     render() {
+        const { data } = this.props.discover;
+
         return (
             <View style={styles.container}>
                 <FlatList
-                    data={jsonData.data}
+                    numColumns={3}
+                    data={data}
                     keyExtractor={(item, index) => item.id}
                     renderItem={this.renderItem.bind(this)}
                 />
@@ -51,7 +61,7 @@ export default class HomeScreen extends React.Component {
     }
 }
 
-const {width, height} = Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
     container: {
@@ -75,3 +85,17 @@ const styles = StyleSheet.create({
         height: 26
     },
 });
+
+const mapStateToProps = ({discover}) => {
+    return {
+        discover
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actions: bindActionCreators(actions, dispatch)
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DiscoverScreen);

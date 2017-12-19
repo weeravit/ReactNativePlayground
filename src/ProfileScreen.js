@@ -1,5 +1,5 @@
 import React from 'react'
-import {FlatList, Image, StyleSheet, TouchableOpacity, View, Dimensions} from 'react-native'
+import {Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, View} from 'react-native'
 import {Button, Container, Content, Header, ListItem, Text} from "native-base";
 import jsonData from '../assets/example2'
 import {NavigationActions} from "react-navigation";
@@ -126,7 +126,7 @@ export default class ProfileScreen extends React.Component {
     }
 }
 
-const { width, height } = Dimensions.get('window')
+const {width, height} = Dimensions.get('window')
 
 const styles = StyleSheet.create({
     container: {

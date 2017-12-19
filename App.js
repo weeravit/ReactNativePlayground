@@ -1,9 +1,11 @@
 import React from 'react';
 import {StackNavigator, TabBarBottom, TabNavigator} from 'react-navigation'
-import HomeScreen from './src/HomeScreen'
+import HomeScreen from './src/home/HomeScreen'
 import DetailScreen from './src/DetailScreen'
-import DiscoverScreen from './src/DiscoverScreen'
+import DiscoverScreen from './src/discover/DiscoverScreen'
 import ProfileScreen from './src/ProfileScreen'
+import {Provider} from "react-redux";
+import Store from './src/redux/store'
 
 const TabStack = TabNavigator({
     HomeStack: {
@@ -55,4 +57,12 @@ const MainStackNavigator = StackNavigator({
     headerMode: 'none'
 });
 
-export default MainStackNavigator;
+const main = () => {
+    return (
+        <Provider store={Store}>
+            <MainStackNavigator/>
+        </Provider>
+    )
+}
+
+export default main;
